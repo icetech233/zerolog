@@ -12,8 +12,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-
-	"github.com/mattn/go-colorable"
 )
 
 const (
@@ -94,18 +92,13 @@ type ConsoleWriter struct {
 // NewConsoleWriter creates and initializes a new ConsoleWriter.
 func NewConsoleWriter(options ...func(w *ConsoleWriter)) ConsoleWriter {
 	w := ConsoleWriter{
-		Out:          os.Stdout,
-		TimeFormat:   consoleDefaultTimeFormat,
-		PartsOrder:   consoleDefaultPartsOrder(),
+		Out:        os.Stdout,
+		TimeFormat: consoleDefaultTimeFormat,
+		PartsOrder: consoleDefaultPartsOrder(),
 	}
 
 	for _, opt := range options {
 		opt(&w)
-	}
-
-	// Fix color on Windows
-	if w.Out == os.Stdout || w.Out == os.Stderr {
-		w.Out = colorable.NewColorable(w.Out.(*os.File))
 	}
 
 	return w
@@ -113,10 +106,6 @@ func NewConsoleWriter(options ...func(w *ConsoleWriter)) ConsoleWriter {
 
 // Write transforms the JSON input with formatters and appends to w.Out.
 func (w ConsoleWriter) Write(p []byte) (n int, err error) {
-	// Fix color on Windows
-	if w.Out == os.Stdout || w.Out == os.Stderr {
-		w.Out = colorable.NewColorable(w.Out.(*os.File))
-	}
 
 	if w.PartsOrder == nil {
 		w.PartsOrder = consoleDefaultPartsOrder()

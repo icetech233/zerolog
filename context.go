@@ -423,6 +423,8 @@ func newCallerHook(skipFrameCount int) callerHook {
 	return callerHook{callerSkipFrameCount: skipFrameCount}
 }
 
+const contextCallerSkipFrameCount = 2
+
 func (ch callerHook) Run(e *Event, level Level, msg string) {
 	switch ch.callerSkipFrameCount {
 	case useGlobalSkipFrameCount:
