@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/rs/zerolog"
+	"github.com/icetech233/zerolog"
 )
 
 // Logger is the global logger.

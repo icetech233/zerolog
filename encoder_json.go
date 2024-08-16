@@ -7,7 +7,7 @@ package zerolog
 
 import (
 	"encoding/base64"
-	"github.com/rs/zerolog/internal/json"
+	"github.com/icetech233/zerolog/internal/json"
 )
 
 var (

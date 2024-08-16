@@ -1,4 +1,4 @@
-module github.com/rs/zerolog
+module github.com/icetech233/zerolog
 
 go 1.20
 
